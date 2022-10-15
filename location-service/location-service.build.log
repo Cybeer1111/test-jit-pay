@@ -1,16 +1,16 @@
 #1 [internal] load build definition from Dockerfile
-#1 sha256:faf79f551a3b36db00df1bbe96cba82129ffd26ebdb4123638378389c59e8f5d
+#1 sha256:2d222e3122e5f3a5f364c0e9cc82f9ace18f51544e141573dadb5260eac7a5de
 #1 transferring dockerfile: 871B done
 #1 DONE 0.0s
 
 #2 [internal] load .dockerignore
-#2 sha256:63f7e0e9f03f0208729471eb9f32e1e75371350ef612fc2f451a2b813aaad2a2
+#2 sha256:972eefb8996b4edf2aee99743717ff4948cedbec973afa4cee118576718b968f
 #2 transferring context: 2B done
 #2 DONE 0.0s
 
 #3 [internal] load metadata for docker.io/bellsoft/liberica-openjdk-debian:11.0.15-10
 #3 sha256:38b081e819e34ed86936b8507380951209cfc82831da4485a2c7c7e3ed90f559
-#3 DONE 2.6s
+#3 DONE 1.8s
 
 #4 [1/6] FROM docker.io/bellsoft/liberica-openjdk-debian:11.0.15-10@sha256:38b386f891caad5defb08b73a082682498d08a2347488ee085afef34f99cef86
 #4 sha256:3002ad5e6d8a4dff3a528df336b8470fcd1e4c727b98b82e2fc92d6cfddeb843
@@ -18,35 +18,35 @@
 #4 DONE 0.0s
 
 #5 [internal] load build context
-#5 sha256:94abeaa82cea7e0deeb1c217d5262aea46bc8dd6866bf9da5640106eff812d8d
-#5 transferring context: 22.71kB 0.0s done
+#5 sha256:ae661a67f121e71a1e22f2145748f4bd0710a46b66bc4ec19869c7340cc85437
+#5 transferring context: 22.72kB done
 #5 DONE 0.0s
 
 #6 [2/6] COPY --chown=root:2020 start.sh /usr/share/app/bin/
-#6 sha256:12db461d518da49a612264177c5d8ca794b27612e29fd2317a678432be6b8b79
+#6 sha256:86dffb38f308f91b7126f990b47a7d12aefc36218fc3c5a927a23e963dd15e44
 #6 CACHED
 
 #7 [3/6] COPY --chown=root:2020 pack /usr/share/app/self/
-#7 sha256:d60538dbd3cb312947861b1c3abac8bde50fe31f03f9a83b6285ad6bbbbc5f72
+#7 sha256:42ec539b14ad10984539a1fbe4eda783cc579311aad59dafda91594d1430f0fc
 #7 DONE 0.1s
 
 #8 [4/6] COPY --chown=root:2020 src/main/resources /etc/app/
-#8 sha256:2769164ee4f9b44b26ed21385163d4e762f889cd7a072fd6342992fc663863a2
+#8 sha256:d1fda8ee9142d7399da1bdbf8310b35be36922fe0438c76b6b247016c6ca37e7
 #8 DONE 0.0s
 
 #9 [5/6] RUN chmod -R ug=rx,o-rwx /etc/app /usr/share/app &&    find /etc/app /usr/share/app -type f -exec chmod ug-x {} ; &&    chmod ug+x /usr/share/app/bin/start.sh &&    install -o 2020 -g 2020 -m ug=rwx,o-rwx -d /var/lib/app &&    groupadd -g 2020 Heimdallr && useradd --no-log-init -r -s /bin/false -u 2020 -g Heimdallr Heimdallr
-#9 sha256:4ca9a50cbb0ae28dbaeb4f6d9ad8623a1654e27dfd932d97e451ceefe8d97be5
-#9 DONE 0.7s
+#9 sha256:5633adb7d49553ad631cbfdba1dee118017bbdfbc3c2484750e824673c0f841b
+#9 DONE 0.6s
 
 #10 [6/6] WORKDIR /var/lib/app
-#10 sha256:d66d031c410d4ac05dfc4181c8f69b922a92e8af765fc45ceec1a12b777d9a9a
+#10 sha256:415feb04aa5fb2d1a405f6001f219e8fe686a3f7a18bf5b287483fc1a9051275
 #10 DONE 0.0s
 
 #11 exporting to image
 #11 sha256:e8c613e07b0b7ff33893b694f7759a10d42e180f2b4dc349fb57dc6b71dcab00
 #11 exporting layers
 #11 exporting layers 0.2s done
-#11 writing image sha256:4ef9e599c338782bf32319b0f07efaa027b75efc2ff83d76d152f96fa1b1599e done
+#11 writing image sha256:730f303e499a17d5d08cebd0ff2b7915019982dd55f5d422888196c8cc30ad8f done
 #11 naming to docker.io/library/location-service:1.0 done
 #11 DONE 0.2s
 

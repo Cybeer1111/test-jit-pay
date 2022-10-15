@@ -15,15 +15,23 @@ public class UserLocation
     @Id
     @GeneratedValue
     private UUID id;
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "userId", referencedColumnName = "id")
-    private User user;
+    private UUID userId;
     private LocalDateTime createdOn;
     private double latitude;
     private double longitude;
 
     public UserLocation()
     {
+    }
+
+    public UUID getUserId()
+    {
+        return userId;
+    }
+
+    public void setUserId(UUID userId)
+    {
+        this.userId = userId;
     }
 
     public UUID getId()
@@ -34,16 +42,6 @@ public class UserLocation
     public void setId(UUID id)
     {
         this.id = id;
-    }
-
-    public User getUser()
-    {
-        return user;
-    }
-
-    public void setUser(User user)
-    {
-        this.user = user;
     }
 
     public LocalDateTime getCreatedOn()

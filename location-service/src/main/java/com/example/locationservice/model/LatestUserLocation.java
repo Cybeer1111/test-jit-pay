@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class LatestUserLocation extends UserSuperclass
 {
     @ManyToOne
-    @JoinFormula("(SELECT ul.id FROM UserLocation ul WHERE ul.userId = id ORDER BY ul.createdOn DESC LIMIT 1)")
+    @JoinFormula("(SELECT ul.id FROM user_location ul WHERE ul.user_id = id ORDER BY ul.created_on DESC LIMIT 1)")
     private UserLocation location;
 
     public LatestUserLocation()

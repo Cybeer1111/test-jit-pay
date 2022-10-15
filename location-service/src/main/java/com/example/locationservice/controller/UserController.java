@@ -3,11 +3,14 @@ package com.example.locationservice.controller;
 import com.example.locationservice.model.LatestUserLocation;
 import com.example.locationservice.model.User;
 import com.example.locationservice.exception.UserNotFoundException;
+import com.example.locationservice.model.UserLocation;
 import com.example.locationservice.model.UserLocations;
 import com.example.locationservice.repository.LatestUserLocationRepository;
-import com.example.locationservice.repository.UserLocationsRepository;
+import com.example.locationservice.repository.UserLocationRepository;
 import com.example.locationservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,15 +28,21 @@ public class UserController
     private UserRepository userRepository;
 
     @Autowired
-    private UserLocationsRepository userLocationsRepository;
+    private LatestUserLocationRepository latestUserLocationRepository;
 
     @Autowired
-    private LatestUserLocationRepository latestUserLocationRepository;
+    private UserLocationRepository userLocationRepository;
 
     @PostMapping("/user")
     void insertOrUpdate(@RequestBody User user)
     {
         userRepository.save(user);
+    }
+
+    @PostMapping("/user/location")
+    void insertOrUpdate(@RequestBody UserLocation location)
+    {
+        userLocationRepository.save(location);
     }
 
     @GetMapping("/user/location/latest/{userId}")
@@ -44,9 +53,24 @@ public class UserController
     }
 
     @GetMapping(value = "/user/location/history/{userId}", params = {"startDateTime", "endDateTime"})
-    UserLocations one(@PathVariable UUID userId, @RequestParam LocalDateTime startDateTime, @RequestParam LocalDateTime endDateTime)
+    UserLocations one(@PathVariable UUID userId,
+                      @RequestParam
+                      @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
+                              LocalDateTime startDateTime,
+                      @RequestParam
+                      @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
+                              LocalDateTime endDateTime)
     {
-        return userLocationsRepository.findByUserIdAndCreatedOnBetween(userId, startDateTime, endDateTime)
-                .orElseThrow(() -> new UserNotFoundException(userId));
+        var locations = new UserLocations();
+
+        locations.setUserId(userId);
+        locations.setLocations(userLocationRepository.findByUserIdAndCreatedOnBetween(userId, startDateTime, endDateTime));
+
+        if (locations.getLocations() == null || locations.getLocations().isEmpty())
+        {
+            ResponseEntity.noContent().build();
+        }
+
+        return locations;
     }
 }
