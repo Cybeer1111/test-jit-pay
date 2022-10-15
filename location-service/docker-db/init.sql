@@ -1,0 +1,3 @@
+CREATE USER docker PASSWORD 'password';
+CREATE DATABASE locations;
+GRANT ALL PRIVILEGES ON DATABASE locations TO docker;

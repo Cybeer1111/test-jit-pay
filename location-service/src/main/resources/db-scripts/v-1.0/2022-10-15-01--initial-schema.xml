@@ -1,0 +1,27 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+	<changeSet id="create-tables" author="gorbunov" dbms="postgresql">
+		<createTable tableName="User">
+			<column name="id" type="uuid">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="firstName" type="varchar(255)"/>
+			<column name="secondName" type="varchar(255)"/>
+			<column name="createdOn" type="timestamp without time zone"/>
+			<column name="email" type="varchar(320)"/>
+		</createTable>
+		<createTable tableName="UserLocation">
+			<column name="id" type="uuid">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="userId" type="uuid">
+				<constraints referencedTableName="User" referencedColumnNames="id" deleteCascade="true" foreignKeyName="fk_user_location_to_user"/>
+			</column>
+			<column name="createdOn" type="timestamp without time zone"/>
+			<column name="latitude" type="double precision"/>
+			<column name="longitude" type="double precision"/>
+		</createTable>
+		<createIndex indexName="idx_user_location_createdOn" tableName="UserLocation" unique="false">
+			<column name="createdOn"/>
+		</createIndex>
+	</changeSet>
+</databaseChangeLog>

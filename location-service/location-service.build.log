@@ -1,0 +1,53 @@
+#1 [internal] load build definition from Dockerfile
+#1 sha256:ba9a407cebc7ba5820e78c5edda53220976d0381f1e21ca5a2f5f4267c03e497
+#1 transferring dockerfile: 871B done
+#1 DONE 0.0s
+
+#2 [internal] load .dockerignore
+#2 sha256:8d287410f9be02912093e8d04e06e85bf859f8313c29738d95492487f78cacc6
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/bellsoft/liberica-openjdk-debian:11.0.15-10
+#3 sha256:38b081e819e34ed86936b8507380951209cfc82831da4485a2c7c7e3ed90f559
+#3 DONE 1.8s
+
+#5 [internal] load build context
+#5 sha256:5baa97ae04d1d86461b19fe9c230668a3188e8bf4d8472bcd27828ca60cd29c9
+#5 transferring context: 22.57kB done
+#5 DONE 0.0s
+
+#4 [1/6] FROM docker.io/bellsoft/liberica-openjdk-debian:11.0.15-10@sha256:38b386f891caad5defb08b73a082682498d08a2347488ee085afef34f99cef86
+#4 sha256:3002ad5e6d8a4dff3a528df336b8470fcd1e4c727b98b82e2fc92d6cfddeb843
+#4 resolve docker.io/bellsoft/liberica-openjdk-debian:11.0.15-10@sha256:38b386f891caad5defb08b73a082682498d08a2347488ee085afef34f99cef86 done
+#4 CACHED
+
+#6 [2/6] COPY --chown=root:2020 start.sh /usr/share/app/bin/
+#6 sha256:21cf58b0d008d71a30ce246b956df8bfa7fefd1f2c59a413fb5a2c661d45ece4
+#6 DONE 0.0s
+
+#7 [3/6] COPY --chown=root:2020 pack /usr/share/app/self/
+#7 sha256:b6958462312634bc15b3782a15f96943cd4321c58a7bcb6413a5e6c7ed554b75
+#7 DONE 0.1s
+
+#8 [4/6] COPY --chown=root:2020 src/main/resources /etc/app/
+#8 sha256:5eaa1ff0718acee628b61be39d90a01beb3719f591bdfada4150ea2a2dd7a01b
+#8 DONE 0.0s
+
+#9 [5/6] RUN chmod -R ug=rx,o-rwx /etc/app /usr/share/app &&    find /etc/app /usr/share/app -type f -exec chmod ug-x {} ; &&    chmod ug+x /usr/share/app/bin/start.sh &&    install -o 2020 -g 2020 -m ug=rwx,o-rwx -d /var/lib/app &&    groupadd -g 2020 Heimdallr && useradd --no-log-init -r -s /bin/false -u 2020 -g Heimdallr Heimdallr
+#9 sha256:9cd09adda37976b778304b6e55504f10d9c3c6383ce25eff1c671fc99ce0070a
+#9 DONE 0.6s
+
+#10 [6/6] WORKDIR /var/lib/app
+#10 sha256:a9c1e2c8ac0288d83d52cdc31907996d15fd9aa6c3fe9d071304c8acd45a8ca2
+#10 DONE 0.0s
+
+#11 exporting to image
+#11 sha256:e8c613e07b0b7ff33893b694f7759a10d42e180f2b4dc349fb57dc6b71dcab00
+#11 exporting layers
+#11 exporting layers 0.2s done
+#11 writing image sha256:bed62f6c68e5e9c1badbe01c749c0d55344b1bd6b5bab1a466a580d1a9a456a4 done
+#11 naming to docker.io/library/location-service:1.0 done
+#11 DONE 0.2s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them

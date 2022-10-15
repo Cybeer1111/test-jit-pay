@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <Property name="PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [#%T:%t MDC:%X] %-5level %notEmpty{[%marker]} %logger{36} - %msg%n</Property>
+        <Property name="HEADER">${bundle:version:name} ${bundle:version:version}
+			${sys:line.separator}Java runtime version: ${java:runtime}
+			${sys:line.separator}Java VM version: ${java:vm}
+			${sys:line.separator}OS version: ${java:os}
+			${sys:line.separator}Locale: ${java:locale}
+			${sys:line.separator}Hardware information: ${java:hw}
+			${sys:line.separator}Host: ${k8s:host:-}${sys:line.separator}Host IP: ${k8s:hostIp:-}
+			${sys:line.separator}Account Name: ${k8s:accountName:-}
+			${sys:line.separator}Cluster Name: ${k8s:clusterName:-}
+			${sys:line.separator}Container Id: ${k8s:containerId:-}
+			${sys:line.separator}Container Name: ${k8s:containerName:-}
+			${sys:line.separator}Image Id: ${k8s:imageId:-}
+			${sys:line.separator}Image Name: ${k8s:imageName:-}
+			${sys:line.separator}Labels: ${k8s:labels:-}
+			${sys:line.separator}Application Name: ${k8s:labels.app:-}
+			${sys:line.separator}Pod Template Hash: ${k8s:labels.podTemplateHash:-}
+			${sys:line.separator}Master Url: ${k8s:masterUrl:-}
+			${sys:line.separator}Namespace Id: ${k8s:namespaceId:-}
+			${sys:line.separator}Namespace Name: ${k8s:namespaceName:-}
+			${sys:line.separator}Pod Id: ${k8s:podId:-}
+			${sys:line.separator}Pod IP: ${k8s:podIp:-}
+			${sys:line.separator}Pod Name: ${k8s:podName:-}
+        </Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="STDERR" target="SYSTEM_ERR">
+            <PatternLayout pattern="${PATTERN}" charset="UTF-8" header="${HEADER}"/>
+        </Console>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="${PATTERN}" charset="UTF-8" header="${HEADER}"/>
+        </Console>
+        <Async name="Async" bufferSize="5000">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="STDERR" level="warn"/>
+        </Async>
+    </Appenders>
+
+    <Loggers>
+        <Root level="${env:LOG4J2_LOGGER_ROOT_LEVEL:-debug}">
+            <AppenderRef ref="Async"/>
+        </Root>
+        <Logger name="org.springframework" level="${env:LOG4J2_LOGGER_ADDITIONAL_LEVEL:-info}"/>
+        <Logger name="org.apache.camel" level="${env:LOG4J2_LOGGER_ADDITIONAL_LEVEL:-info}"/>
+    </Loggers>
+</Configuration>
