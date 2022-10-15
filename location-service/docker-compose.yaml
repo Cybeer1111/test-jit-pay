@@ -5,8 +5,6 @@ services:
     restart: unless-stopped
     ports:
       - 5432:5432
-    networks:
-      - demo-net
     volumes:
       - pg-data:/var/lib/postgresql/data
     environment:
@@ -20,21 +18,16 @@ services:
     ports:
       - 9071:80
     restart: unless-stopped
-    networks:
-      - demo-net
     depends_on:
       - postgres
     environment:
         - SERVER_PORT=80
         - SPRING_LIQUIBASE_CHANGE_LOG=classpath:db-scripts/db-changelog.xml
         - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
-        - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/locations?cancelSignalTimeout=10&queryTimeout=60&socketTimeout=60&options=-c%20statement_timeout=60000
+        - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/locations?cancelSignalTimeout=10&queryTimeout=60&socketTimeout=60&options=-c%20statement_timeout=60000
         - SPRING_DATASOURCE_USERNAME=docker
         - SPRING_DATASOURCE_PASSWORD=password
+        - LOG4J2_LOGGER_ADDITIONAL_LEVEL=debug
       
-networks:
-  demo-net:
-      driver: bridge
-        
 volumes:
   pg-data:

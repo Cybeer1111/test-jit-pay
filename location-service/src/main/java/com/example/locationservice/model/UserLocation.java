@@ -1,6 +1,6 @@
 package com.example.locationservice.model;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,9 +16,9 @@ public class UserLocation
     @GeneratedValue
     private UUID id;
     @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userId", referencedColumnName = "id")
     private User user;
-    private Instant createdOn;
+    private LocalDateTime createdOn;
     private double latitude;
     private double longitude;
 
@@ -46,12 +46,12 @@ public class UserLocation
         this.user = user;
     }
 
-    public Instant getCreatedOn()
+    public LocalDateTime getCreatedOn()
     {
         return createdOn;
     }
 
-    public void setCreatedOn(Instant createdOn)
+    public void setCreatedOn(LocalDateTime createdOn)
     {
         this.createdOn = createdOn;
     }

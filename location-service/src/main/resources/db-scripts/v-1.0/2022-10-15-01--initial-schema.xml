@@ -1,27 +1,27 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
 	<changeSet id="create-tables" author="gorbunov" dbms="postgresql">
-		<createTable tableName="User">
+		<createTable tableName="user_table">
 			<column name="id" type="uuid">
 				<constraints nullable="false" primaryKey="true"/>
 			</column>
-			<column name="firstName" type="varchar(255)"/>
-			<column name="secondName" type="varchar(255)"/>
-			<column name="createdOn" type="timestamp without time zone"/>
+			<column name="first_name" type="varchar(255)"/>
+			<column name="second_name" type="varchar(255)"/>
+			<column name="created_on" type="timestamp without time zone"/>
 			<column name="email" type="varchar(320)"/>
 		</createTable>
-		<createTable tableName="UserLocation">
+		<createTable tableName="user_location">
 			<column name="id" type="uuid">
 				<constraints nullable="false" primaryKey="true"/>
 			</column>
-			<column name="userId" type="uuid">
-				<constraints referencedTableName="User" referencedColumnNames="id" deleteCascade="true" foreignKeyName="fk_user_location_to_user"/>
+			<column name="user_id" type="uuid">
+				<constraints referencedTableName="user_table" referencedColumnNames="id" deleteCascade="true" foreignKeyName="fk_user_location_to_user_table"/>
 			</column>
-			<column name="createdOn" type="timestamp without time zone"/>
+			<column name="created_on" type="timestamp without time zone"/>
 			<column name="latitude" type="double precision"/>
 			<column name="longitude" type="double precision"/>
 		</createTable>
-		<createIndex indexName="idx_user_location_createdOn" tableName="UserLocation" unique="false">
-			<column name="createdOn"/>
+		<createIndex indexName="idx_user_location_created_on" tableName="user_location" unique="false">
+			<column name="created_on"/>
 		</createIndex>
 	</changeSet>
 </databaseChangeLog>

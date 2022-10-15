@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @RestController
@@ -44,9 +44,9 @@ public class UserController
     }
 
     @GetMapping(value = "/user/location/history/{userId}", params = {"startDateTime", "endDateTime"})
-    UserLocations one(@PathVariable UUID userId, @RequestParam Instant startDateTime, @RequestParam Instant endDateTime)
+    UserLocations one(@PathVariable UUID userId, @RequestParam LocalDateTime startDateTime, @RequestParam LocalDateTime endDateTime)
     {
-        return userLocationsRepository.findByIdAndByCreatedOnBetween(userId, startDateTime, endDateTime)
+        return userLocationsRepository.findByUserIdAndCreatedOnBetween(userId, startDateTime, endDateTime)
                 .orElseThrow(() -> new UserNotFoundException(userId));
     }
 }

@@ -7,8 +7,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "User")
-public class LatestUserLocation extends User
+@Table(name = "UserTable")
+public class LatestUserLocation extends UserSuperclass
 {
     @ManyToOne
     @JoinFormula("(SELECT ul.id FROM UserLocation ul WHERE ul.userId = id ORDER BY ul.createdOn DESC LIMIT 1)")
