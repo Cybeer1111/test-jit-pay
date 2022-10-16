@@ -2,6 +2,7 @@ package com.example.locationservice.service;
 
 import com.example.locationservice.dto.UserLocation;
 import com.example.locationservice.dto.UserLocations;
+import com.example.locationservice.exception.LocationCannotBeUpdatedException;
 import com.example.locationservice.exception.UserNotFoundException;
 
 import java.time.LocalDateTime;
@@ -29,5 +30,5 @@ public interface LocationService
      *
      * @param location user location.
      */
-    void saveOrUpdate(UserLocation location) throws UserNotFoundException;
+    void saveOrUpdate(UserLocation location) throws UserNotFoundException, LocationCannotBeUpdatedException;
 }

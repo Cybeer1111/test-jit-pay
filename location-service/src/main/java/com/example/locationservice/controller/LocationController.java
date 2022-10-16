@@ -3,7 +3,9 @@ package com.example.locationservice.controller;
 import com.example.locationservice.dto.UserLocation;
 import com.example.locationservice.dto.UserLocations;
 import com.example.locationservice.exception.ApplicationResponseException;
+import com.example.locationservice.exception.LocationCannotBeUpdatedException;
 import com.example.locationservice.exception.UserNotFoundException;
+import com.example.locationservice.exception.error.LocationCannotBeUpdatedError;
 import com.example.locationservice.exception.error.UserNotFoundError;
 import com.example.locationservice.service.LocationService;
 import org.apache.logging.log4j.LogManager;
@@ -46,6 +48,11 @@ public class LocationController
         catch (UserNotFoundException userNotFoundException)
         {
             throw new ApplicationResponseException(new UserNotFoundError(userNotFoundException.getUserId()));
+        }
+        catch (LocationCannotBeUpdatedException locationCannotBeUpdatedException)
+        {
+            throw new ApplicationResponseException(
+                    new LocationCannotBeUpdatedError(locationCannotBeUpdatedException.getUserId(), locationCannotBeUpdatedException.getCreatedOn()));
         }
     }
 

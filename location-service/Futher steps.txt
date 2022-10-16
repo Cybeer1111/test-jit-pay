@@ -1,3 +1,4 @@
 Further steps
 
 1. Remove unnecessary id from user_location table.
+2. Catch unique contraint violation at UserLocation in more targeted way.
