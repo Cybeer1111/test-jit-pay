@@ -4,6 +4,10 @@ To create docker image execute:
 > cd docker-db\
 > create-db-image.cmd
 # Build project
+## Build requirements
+1. Maven
+2. JAVA SDK 11 or greater
+## Build steps
 To build project and create docker image execute:
 > build-docker.cmd
 # Run project under Docker 
