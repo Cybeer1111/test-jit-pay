@@ -17,5 +17,3 @@ WORKDIR /var/lib/app
 ENTRYPOINT ["bash", "/usr/share/app/bin/start.sh"]
 # JMX port inside container
 EXPOSE 8686
-# working directory
-VOLUME /var/lib/app

@@ -1,21 +1,23 @@
 package com.example.locationservice.model;
 
+import com.example.locationservice.model.key.UserLocationKey;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 
 /**
  * User location entity. Represents database structure.
  */
 @Entity
+@IdClass(UserLocationKey.class)
 public class UserLocation
 {
     @Id
-    @GeneratedValue
-    private UUID id;
     private UUID userId;
+    @Id
     private LocalDateTime createdOn;
     private double latitude;
     private double longitude;
@@ -29,6 +31,7 @@ public class UserLocation
 
     /**
      * Get user identifier.
+     *
      * @return User identifier.
      */
     public UUID getUserId()
@@ -38,6 +41,7 @@ public class UserLocation
 
     /**
      * Set user identifier.
+     *
      * @param userId User identifier.
      */
     public void setUserId(UUID userId)
@@ -46,25 +50,8 @@ public class UserLocation
     }
 
     /**
-     * Get location identifier.
-     * @return Location identifier.
-     */
-    public UUID getId()
-    {
-        return id;
-    }
-
-    /**
-     * Set location identifier.
-     * @param id Location identifier.
-     */
-    public void setId(UUID id)
-    {
-        this.id = id;
-    }
-
-    /**
      * Get date when user was in this location.
+     *
      * @return Date when user was in this location.
      */
     public LocalDateTime getCreatedOn()
@@ -74,6 +61,7 @@ public class UserLocation
 
     /**
      * Set date when user was in this location.
+     *
      * @param createdOn Date when user was in this location.
      */
     public void setCreatedOn(LocalDateTime createdOn)
@@ -83,6 +71,7 @@ public class UserLocation
 
     /**
      * Get latitude of user location.
+     *
      * @return Latitude of user location.
      */
     public double getLatitude()
@@ -92,6 +81,7 @@ public class UserLocation
 
     /**
      * Set latitude of user location.
+     *
      * @param latitude Latitude of user location.
      */
     public void setLatitude(double latitude)
@@ -101,6 +91,7 @@ public class UserLocation
 
     /**
      * Get longitude of user location.
+     *
      * @return longitude of user location.
      */
     public double getLongitude()
@@ -110,6 +101,7 @@ public class UserLocation
 
     /**
      * Set longitude of user location.
+     *
      * @param longitude longitude of user location.
      */
     public void setLongitude(double longitude)
@@ -121,7 +113,6 @@ public class UserLocation
     public String toString()
     {
         return "UserLocation{" +
-                "id=" + id +
                 ", userId=" + userId +
                 ", createdOn=" + createdOn +
                 ", latitude=" + latitude +

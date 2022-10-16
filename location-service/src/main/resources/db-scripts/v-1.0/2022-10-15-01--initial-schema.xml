@@ -1,27 +1,32 @@
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
-	<changeSet id="create-tables" author="gorbunov" dbms="postgresql">
-		<createTable tableName="user_table">
-			<column name="id" type="uuid">
-				<constraints nullable="false" primaryKey="true"/>
-			</column>
-			<column name="first_name" type="varchar(255)"/>
-			<column name="second_name" type="varchar(255)"/>
-			<column name="created_on" type="timestamp without time zone"/>
-			<column name="email" type="varchar(320)"/>
-		</createTable>
-		<createTable tableName="user_location">
-			<column name="id" type="uuid">
-				<constraints nullable="false" primaryKey="true"/>
-			</column>
-			<column name="user_id" type="uuid">
-				<constraints referencedTableName="user_table" referencedColumnNames="id" deleteCascade="true" foreignKeyName="fk_user_location_to_user_table"/>
-			</column>
-			<column name="created_on" type="timestamp without time zone"/>
-			<column name="latitude" type="double precision"/>
-			<column name="longitude" type="double precision"/>
-		</createTable>
-		<createIndex indexName="idx_user_location_created_on" tableName="user_location" unique="false">
-			<column name="created_on"/>
-		</createIndex>
-	</changeSet>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+    <changeSet id="create-tables" author="gorbunov" dbms="postgresql">
+        <createTable tableName="user_table">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="first_name" type="varchar(255)"/>
+            <column name="second_name" type="varchar(255)"/>
+            <column name="created_on" type="timestamp without time zone"/>
+            <column name="email" type="varchar(320)"/>
+        </createTable>
+        <createTable tableName="user_location">
+            <column name="user_id" type="uuid">
+                <constraints nullable="false" referencedTableName="user_table" referencedColumnNames="id" deleteCascade="true"
+                             foreignKeyName="fk_user_location_to_user_table"/>
+            </column>
+            <column name="created_on" type="timestamp without time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="latitude" type="double precision"/>
+            <column name="longitude" type="double precision"/>
+        </createTable>
+        <createIndex indexName="idx_user_location_created_on" tableName="user_location" unique="false">
+            <column name="created_on"/>
+        </createIndex>
+        <addUniqueConstraint
+                columnNames="user_id, created_on"
+                constraintName="unq_user_location"
+                tableName="user_location"/>
+    </changeSet>
 </databaseChangeLog>
