@@ -1,4 +1,5 @@
 HELP.md
+build-results.txt
 location-service.build.log
 target/
 !.mvn/wrapper/maven-wrapper.jar
