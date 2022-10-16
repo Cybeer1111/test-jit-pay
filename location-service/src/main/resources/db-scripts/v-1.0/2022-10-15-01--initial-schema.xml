@@ -11,6 +11,9 @@
             <column name="email" type="varchar(320)"/>
         </createTable>
         <createTable tableName="user_location">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
             <column name="user_id" type="uuid">
                 <constraints nullable="false" referencedTableName="user_table" referencedColumnNames="id" deleteCascade="true"
                              foreignKeyName="fk_user_location_to_user_table"/>

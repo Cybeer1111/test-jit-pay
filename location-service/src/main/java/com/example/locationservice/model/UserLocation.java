@@ -1,26 +1,37 @@
 package com.example.locationservice.model;
 
-import com.example.locationservice.model.key.UserLocationKey;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  * User location entity. Represents database structure.
  */
 @Entity
-@IdClass(UserLocationKey.class)
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "userId", "createdOn" }) })
 public class UserLocation
 {
     @Id
+    @GeneratedValue
+    private UUID id;
     private UUID userId;
-    @Id
     private LocalDateTime createdOn;
     private double latitude;
     private double longitude;
+
+    public UUID getId()
+    {
+        return id;
+    }
+
+    public void setId(UUID id)
+    {
+        this.id = id;
+    }
 
     /**
      * Constructor. Created for JPA purposes.
@@ -113,6 +124,7 @@ public class UserLocation
     public String toString()
     {
         return "UserLocation{" +
+                "id=" + id +
                 ", userId=" + userId +
                 ", createdOn=" + createdOn +
                 ", latitude=" + latitude +
