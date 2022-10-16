@@ -14,3 +14,6 @@ To stop project execute:
 >docker-stop.cmd
 # Access to API
 [Swagger schema](doc/swagger.yaml)
+
+# Further steps
+[Further](doc/Further%20steps.MD)
