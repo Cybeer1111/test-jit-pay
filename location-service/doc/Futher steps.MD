@@ -1,9 +1,10 @@
 #Further steps
 
-## Insignificant
+## Code
 1. Remove unnecessary id from user_location table.
 2. Catch unique constraint violation at UserLocation in a more targeted way.
 All DTO and DOM objects can be generated.
+3. Integrate project with swagger.
 
 ## Speed and scalability
 1. Insert data in batches using producer-consumer model to improve insert speed

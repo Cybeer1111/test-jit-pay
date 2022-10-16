@@ -1,0 +1,188 @@
+openapi: 3.0.3
+info:
+  title: Swagger API
+  contact:
+    email: sergei.v.gorbunov@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: http://localhost:9071/
+tags:
+  - name: user
+    description: User operations
+  - name: location
+    description: Locations operations
+paths:
+  /user:
+    post:
+      tags:
+        - user
+      summary: Add or update user information
+      description: Add or update user information
+      operationId: addUser
+      requestBody:
+        description: Add or update user information
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+  /user/location/{userId}:
+    get:
+      tags:
+        - user
+      summary: Get user location by identifier
+      description: Get user location by identifier
+      operationId: getUserLocation
+      parameters:
+        - name: userId
+          in: path
+          description: User identifier
+          required: true
+          explode: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserWithLocation'          
+        '404':
+          description: User not found
+  /location:
+    post:
+      tags:
+        - location
+      summary: Add user location
+      description: Add user location information
+      operationId: addUserLocation
+      requestBody:
+        description: Add user location information
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLocation'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+        '412':
+          description: Location cannot be updated
+  /location/history/{userId}:
+    get:
+      tags:
+        - location
+      summary: Get user location history
+      description: Get user locations history by date time range.
+      operationId: getUserLocationHistory
+      parameters:
+        - name: userId
+          in: path
+          description: User identifier
+          required: true
+          explode: true
+          schema:
+            type: string
+            format: uuid
+        - name: startDateTime
+          in: query
+          description: Start date time of date time range
+          required: true
+          explode: true
+          schema:
+            type: string
+            format: date-time
+        - name: endDateTime
+          in: query
+          description: End date time of date time range.
+          required: true
+          explode: true
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/UserLocations'          
+        '404':
+          description: User not found
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+          example: "2e3b11b0-07a4-4873-8de5-d2ae2eab25b1"
+        createdOn:
+          type: string
+          format: date-time
+          example: "2022-02-08T11:44:07.544"
+        email:
+          type: string
+          format: email
+          example: "alex.schmid@gmail.com"
+        firstName:
+          type: string
+          example: "Alex"
+        secondName:
+          type: string
+          example: "Schmid"
+    Location:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+          example: 52.25742342295784
+        longitude:
+          type: number
+          format: double
+          example: 52.25742342295784
+    UserWithLocation:
+      allOf:  
+        - $ref: '#/components/schemas/User'
+        - type: object
+          properties:
+            location:
+              oneOf: 
+              - $ref: '#/components/schemas/Location'
+    UserLocation:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+          example: "2e3b11b0-07a4-4873-8de5-d2ae2eab25b1"
+        createdOn:
+          type: string
+          format: date-time
+          example: "2022-02-08T11:44:07.544"
+        location:
+          oneOf: 
+          - $ref: '#/components/schemas/Location'
+    UserLocations:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+          example: "2e3b11b0-07a4-4873-8de5-d2ae2eab25b1"
+        locations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Location'
