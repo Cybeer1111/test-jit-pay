@@ -1,4 +1,4 @@
-#Further steps
+# Further steps
 
 ## Code
 1. Remove unnecessary id from user_location table.
