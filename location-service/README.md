@@ -16,4 +16,4 @@ To stop project execute:
 [Swagger schema](doc/swagger.yaml)
 
 # Further steps
-[Further](doc/Further%20steps.MD)
+[Further steps](doc/Further%20steps.MD)
