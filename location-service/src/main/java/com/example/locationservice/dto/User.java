@@ -1,19 +1,13 @@
-package com.example.locationservice.model;
+package com.example.locationservice.dto;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
 
 /**
- * User entity. Represents database structure.
+ * Represent information about user.
  */
-@MappedSuperclass
-public class UserSuperclass
+public class User
 {
-    @Id
-    @Column(name = "id")
     private UUID userId;
     private String firstName;
     private String secondName;
@@ -21,14 +15,8 @@ public class UserSuperclass
     private String email;
 
     /**
-     * Constructor. Created for JPA purposes.
-     */
-    public UserSuperclass()
-    {
-    }
-
-    /**
      * Get user first name.
+     *
      * @return User first name.
      */
     public String getFirstName()
@@ -38,6 +26,7 @@ public class UserSuperclass
 
     /**
      * Set user first name.
+     *
      * @param firstName User first name.
      */
     public void setFirstName(String firstName)
@@ -47,6 +36,7 @@ public class UserSuperclass
 
     /**
      * Get user second name.
+     *
      * @return User second name.
      */
     public String getSecondName()
@@ -56,6 +46,7 @@ public class UserSuperclass
 
     /**
      * Set user second name.
+     *
      * @param secondName User second name.
      */
     public void setSecondName(String secondName)
@@ -65,6 +56,7 @@ public class UserSuperclass
 
     /**
      * Get date when user information was updated.
+     *
      * @return Date when user information was updated.
      */
     public LocalDateTime getCreatedOn()
@@ -74,6 +66,7 @@ public class UserSuperclass
 
     /**
      * Set date when user information was updated.
+     *
      * @param createdOn Date when user information was updated.
      */
     public void setCreatedOn(LocalDateTime createdOn)
@@ -83,6 +76,7 @@ public class UserSuperclass
 
     /**
      * Get user email.
+     *
      * @return User email.
      */
     public String getEmail()
@@ -92,6 +86,7 @@ public class UserSuperclass
 
     /**
      * Set user email.
+     *
      * @param email user email.
      */
     public void setEmail(String email)
@@ -101,6 +96,7 @@ public class UserSuperclass
 
     /**
      * Get user identifier.
+     *
      * @return User identifier.
      */
     public UUID getUserId()
@@ -110,10 +106,23 @@ public class UserSuperclass
 
     /**
      * Set user identifier.
+     *
      * @param userId User identifier.
      */
     public void setUserId(UUID userId)
     {
         this.userId = userId;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "User{" +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", createdOn=" + createdOn +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

@@ -1,10 +1,14 @@
 #1 [internal] load build definition from Dockerfile
-#1 sha256:2d222e3122e5f3a5f364c0e9cc82f9ace18f51544e141573dadb5260eac7a5de
+#1 sha256:f32d22413244972cc9339512c14404075936a9c4648bce0de6def718d87ea73a
+#1 DONE 0.0s
+
+#1 [internal] load build definition from Dockerfile
+#1 sha256:f32d22413244972cc9339512c14404075936a9c4648bce0de6def718d87ea73a
 #1 transferring dockerfile: 871B done
 #1 DONE 0.0s
 
 #2 [internal] load .dockerignore
-#2 sha256:972eefb8996b4edf2aee99743717ff4948cedbec973afa4cee118576718b968f
+#2 sha256:0d8da70b1b2994fcb81cc9f0139ee84b633a05563211a95e1a81c4054cb821c3
 #2 transferring context: 2B done
 #2 DONE 0.0s
 
@@ -18,35 +22,35 @@
 #4 DONE 0.0s
 
 #5 [internal] load build context
-#5 sha256:ae661a67f121e71a1e22f2145748f4bd0710a46b66bc4ec19869c7340cc85437
-#5 transferring context: 22.72kB done
+#5 sha256:2663f9abc0ac2bf8a3296e4746f2b61f8b177cfee12084a4221fc3f85d4314fe
+#5 transferring context: 39.34kB done
 #5 DONE 0.0s
 
 #6 [2/6] COPY --chown=root:2020 start.sh /usr/share/app/bin/
-#6 sha256:86dffb38f308f91b7126f990b47a7d12aefc36218fc3c5a927a23e963dd15e44
+#6 sha256:3ef58339342298fd6698529f809a56c6ba1e99d5617f96bba59529b2a030c681
 #6 CACHED
 
 #7 [3/6] COPY --chown=root:2020 pack /usr/share/app/self/
-#7 sha256:42ec539b14ad10984539a1fbe4eda783cc579311aad59dafda91594d1430f0fc
+#7 sha256:5df684f675452679c459663c6dcc229a1228aa5ef56f03ab96717f8d12b9b116
 #7 DONE 0.1s
 
 #8 [4/6] COPY --chown=root:2020 src/main/resources /etc/app/
-#8 sha256:d1fda8ee9142d7399da1bdbf8310b35be36922fe0438c76b6b247016c6ca37e7
+#8 sha256:ddeae48d0f841ac0d3cdf736a1428984bd17296024b2dc7562c0faa91e13c018
 #8 DONE 0.0s
 
 #9 [5/6] RUN chmod -R ug=rx,o-rwx /etc/app /usr/share/app &&    find /etc/app /usr/share/app -type f -exec chmod ug-x {} ; &&    chmod ug+x /usr/share/app/bin/start.sh &&    install -o 2020 -g 2020 -m ug=rwx,o-rwx -d /var/lib/app &&    groupadd -g 2020 Heimdallr && useradd --no-log-init -r -s /bin/false -u 2020 -g Heimdallr Heimdallr
-#9 sha256:5633adb7d49553ad631cbfdba1dee118017bbdfbc3c2484750e824673c0f841b
+#9 sha256:972100081ec378cf5d013690a9fc946b2b04a5524952e762b9663849f865cbd5
 #9 DONE 0.6s
 
 #10 [6/6] WORKDIR /var/lib/app
-#10 sha256:415feb04aa5fb2d1a405f6001f219e8fe686a3f7a18bf5b287483fc1a9051275
+#10 sha256:6b0621fc784463f846c73d6712c405f70b2d5c0a7de807a276108984ceb324a6
 #10 DONE 0.0s
 
 #11 exporting to image
 #11 sha256:e8c613e07b0b7ff33893b694f7759a10d42e180f2b4dc349fb57dc6b71dcab00
 #11 exporting layers
 #11 exporting layers 0.2s done
-#11 writing image sha256:730f303e499a17d5d08cebd0ff2b7915019982dd55f5d422888196c8cc30ad8f done
+#11 writing image sha256:110c94dbbd126b787192265bbc2e4475192c2e93b4980832c66c2f538b74413f done
 #11 naming to docker.io/library/location-service:1.0 done
 #11 DONE 0.2s
 
