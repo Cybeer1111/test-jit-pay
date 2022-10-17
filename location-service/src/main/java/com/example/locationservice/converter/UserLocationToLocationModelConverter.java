@@ -9,6 +9,10 @@ public class UserLocationToLocationModelConverter extends AbstractConverter<User
     @Override
     protected Location convert(UserLocation userLocation)
     {
+        if (userLocation == null)
+        {
+            return null;
+        }
         var location = new Location();
         location.setLatitude(userLocation.getLatitude());
         location.setLongitude(userLocation.getLongitude());

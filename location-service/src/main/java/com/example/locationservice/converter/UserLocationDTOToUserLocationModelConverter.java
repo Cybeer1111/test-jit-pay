@@ -8,6 +8,10 @@ public class UserLocationDTOToUserLocationModelConverter extends AbstractConvert
     @Override
     protected com.example.locationservice.model.UserLocation convert(UserLocation userLocation)
     {
+        if (userLocation == null)
+        {
+            return null;
+        }
         var location = new com.example.locationservice.model.UserLocation();
         location.setLatitude(userLocation.getLocation().getLatitude());
         location.setLongitude(userLocation.getLocation().getLongitude());

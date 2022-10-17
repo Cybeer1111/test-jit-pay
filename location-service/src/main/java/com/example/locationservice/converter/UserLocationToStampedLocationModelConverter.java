@@ -9,6 +9,10 @@ public class UserLocationToStampedLocationModelConverter extends AbstractConvert
     @Override
     protected StampedLocation convert(UserLocation location)
     {
+        if (location == null)
+        {
+            return null;
+        }
         StampedLocation stampedLocation = new StampedLocation();
         stampedLocation.setCreatedOn(location.getCreatedOn());
         stampedLocation.getLocation().setLatitude(location.getLatitude());
