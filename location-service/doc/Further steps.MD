@@ -9,6 +9,7 @@ All DTO and DOM objects can be generated.
 ## Speed and scalability
 1. Insert data in batches using producer-consumer model to improve insert speed
 2. To achieve infinite horizontal scalability change DB to non-relational shardable DB
+3. Choose different connection pool and calibrate pool settings for best results.
 
 ## Requirements
 1. Requirements need to be clarified and expanded.
