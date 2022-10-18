@@ -24,7 +24,7 @@ Web app will perform the following operations on this backend:
    "secondName": "Schmid"
 }
 ```
-2. get user data with latest location (if exists) by userId and response should be:
+2. get user data with the latest location (if exists) by userId and response should be:
 ```
 {
    "userId": "2e3b11b0-07a4-4873-8de5-d2ae2eab26b2",
@@ -64,3 +64,12 @@ The backend must be implemented using Spring / Micronaut, Java / Kotlin and othe
 libraries are also allowed.\
 It would be nice to have unit and integration tests and documentation such as Javadoc, readMe.md
 etc.
+
+# Missed requirements
+1. What is the unique key for User entity?
+2. Can be location of user updated?
+3. Is change history in DB should be saved?
+4. How many users should we be able to save in DB?
+5. How many locations should we be able to save in DB?
+6. How many rows should we be able to return in response on "get user locations" request?
+7. Should we restrict requests by amount in unit of time in context of user/host? 
