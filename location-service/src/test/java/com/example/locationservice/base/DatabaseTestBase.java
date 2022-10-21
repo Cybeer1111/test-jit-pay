@@ -18,7 +18,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public abstract class DatabaseTestBase
 {
+    /**
+     * DateTime format used in messaging
+     */
+    protected final String COMMON_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS";
+
     @ClassRule
     public TestPostgresContainer postgres = TestPostgresContainer
             .getInstance();
+
+
 }

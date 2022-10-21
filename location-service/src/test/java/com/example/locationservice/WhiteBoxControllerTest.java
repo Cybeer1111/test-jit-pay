@@ -3,22 +3,18 @@ package com.example.locationservice;
 import com.example.locationservice.base.DatabaseTestBase;
 import com.example.locationservice.repository.LatestUserLocationRepository;
 import com.example.locationservice.repository.UserRepository;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -27,8 +23,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 public class WhiteBoxControllerTest extends DatabaseTestBase
 {
-    private static final String commonDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS";
-
     @Autowired
     private MockMvc mockMvc;
 
@@ -40,9 +34,10 @@ public class WhiteBoxControllerTest extends DatabaseTestBase
 
     /**
      * Check that application correctly saves user data to DB
-     * @param createdOn createdOn
-     * @param email email
-     * @param firstName email
+     *
+     * @param createdOn  createdOn
+     * @param email      email
+     * @param firstName  email
      * @param secondName secondName
      * @throws Exception Test exception
      */
@@ -72,7 +67,7 @@ public class WhiteBoxControllerTest extends DatabaseTestBase
         var user = userRepository.findById(userIdGuid);
         assertTrue(user.isPresent());
         assertEquals(user.get().getUserId(), userIdGuid);
-        assertEquals(user.get().getCreatedOn(), LocalDateTime.parse(createdOn, DateTimeFormatter.ofPattern(commonDateFormat)));
+        assertEquals(user.get().getCreatedOn(), LocalDateTime.parse(createdOn, DateTimeFormatter.ofPattern(COMMON_DATE_FORMAT)));
         assertEquals(user.get().getEmail(), email);
         assertEquals(user.get().getFirstName(), firstName);
         assertEquals(user.get().getSecondName(), secondName);
@@ -80,12 +75,13 @@ public class WhiteBoxControllerTest extends DatabaseTestBase
 
     /**
      * Test that user and his location correctly saved to DB
-     * @param createdOn createdOn
-     * @param email email
-     * @param firstName firstName
-     * @param secondName secondName
-     * @param longitude longitude
-     * @param latitude latitude
+     *
+     * @param createdOn         createdOn
+     * @param email             email
+     * @param firstName         firstName
+     * @param secondName        secondName
+     * @param longitude         longitude
+     * @param latitude          latitude
      * @param locationCreatedOn locationCreatedOn
      * @throws Exception Test exception
      */
@@ -137,7 +133,7 @@ public class WhiteBoxControllerTest extends DatabaseTestBase
         var user = latestUserLocationRepository.findById(userIdGuid);
         assertTrue(user.isPresent());
         assertEquals(user.get().getUserId(), userIdGuid);
-        assertEquals(user.get().getCreatedOn(), LocalDateTime.parse(createdOn, DateTimeFormatter.ofPattern(commonDateFormat)));
+        assertEquals(user.get().getCreatedOn(), LocalDateTime.parse(createdOn, DateTimeFormatter.ofPattern(COMMON_DATE_FORMAT)));
         assertEquals(user.get().getEmail(), email);
         assertEquals(user.get().getFirstName(), firstName);
         assertEquals(user.get().getSecondName(), secondName);
